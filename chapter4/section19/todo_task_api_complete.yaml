@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: todo task api
+  version: '1.0'
+paths:
+  /todo_tasks:
+    get:
+      description: タスク一覧の取得
+      responses:
+        '200':
+          description: タスクモデルの配列が格納されたJSON
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TodoTask'
+              examples:
+                example-1:
+                  value:
+                    - id: 1
+                      content: 掃除
+                    - id: 2
+                      content: 洗濯
+    post:
+      description: タスクの作成
+      requestBody:
+        description: タスク作成のための情報
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                todo_task:
+                  type: object
+                  properties:
+                    content:
+                      type: string
+                  required:
+                    - content
+              required:
+                - todo_task
+            examples:
+              example-1:
+                value:
+                  todo_task:
+                    content: 洗濯
+      responses:
+        '201':
+          description: Created
+  /todo_tasks/{id}:
+    get:
+      description: タスクの取得
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: タスクが格納されたJSON
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoTask'
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    content: 掃除
+    put:
+      description: タスクの更新
+      parameters:
+        - name: ID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 更新後のタスクモデル
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoTask'
+              examples:
+                example-1:
+                  value:
+                    id: 2
+                    content: 買い物
+    delete:
+      description: タスクの削除
+      parameters:
+        - name: ID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    TodoTask:
+      type: object
+      required:
+        - id
+        - content
+      properties:
+        id:
+          type: integer
+        content:
+          type: string

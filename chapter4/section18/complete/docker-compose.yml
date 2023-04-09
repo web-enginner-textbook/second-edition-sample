@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: root
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - bundler:/usr/local/bundle
+      - .:/todo_app
+    depends_on:
+      - db
+volumes:
+  mysql_data:
+  bundler:

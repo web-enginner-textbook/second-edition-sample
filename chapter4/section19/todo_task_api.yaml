@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: todo task api
+  version: '1.0'
+paths:
+  /todo_tasks/{id}:
+    get:
+      description: タスクの取得
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: タスクが格納されたJSON
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoTask'
+              example:
+                example-1:
+                  value:
+                    id: 1
+                    content: 掃除
+components:
+  schemas:
+    TodoTask:
+      type: object
+      required:
+        - id
+        - content
+      properties:
+        id:
+          type: integer
+        content:
+          type: string
