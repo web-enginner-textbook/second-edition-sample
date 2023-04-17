@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.positive_background {
+  background-color: green;
+}
+
+.negative_background {
+  background-color: gray;
+}
+
+.action_button {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border-color: transparent;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.task_wrapper {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.task_wrapper .action_button {
+  margin-right: 5px;
+}
+
+.task_input {
+  font-size: 16px;
+}
+
+.task_p {
+  display: inline-block;
+}
+
+.task_form_wrapper .task_input {
+  margin-right: 5px;
+}
+
+.app_wrapper {
+  margin: 16px;
+}
+
+/*flex: gap_column*/
